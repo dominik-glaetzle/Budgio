@@ -6,7 +6,8 @@ import { accentColor } from "@/constants/colors";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-  const tintColor = colorScheme === "dark" ? accentColor.dark : accentColor.light;
+  const tintColor =
+    colorScheme === "dark" ? accentColor.dark : accentColor.light;
 
   return (
     <NativeTabs tintColor={tintColor}>
@@ -16,10 +17,10 @@ export default function TabLayout() {
           {i18n.t("tabs.index")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="accounts">
-        <NativeTabTrigger.Icon sf={"person"} />
+      <NativeTabs.Trigger name="transactions">
+        <NativeTabTrigger.Icon sf={"chart.bar"} />
         <NativeTabs.Trigger.Label>
-          {i18n.t("tabs.accounts")}
+          {i18n.t("tabs.transactions")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
