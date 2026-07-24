@@ -1,8 +1,39 @@
 {
   "tabs": {
     "index": "Home",
-    "accounts": "Konten",
+    "transactions": "Transaktionen",
     "settings": "Einstellungen",
     "add": "Hinzufügen"
+  },
+  "header": {
+    "morning": "Guten Morgen",
+    "afternoon": "Guten Tag"
+  },
+  "accountType": {
+    "checking": "Girokonto",
+    "savings": "Sparkonto"
+  },
+  "transactions": {
+    "title": "Letzte Aktivitäten"
+  },
+  "transactionType": {
+    "incoming": "Eingang",
+    "outgoing": "Ausgang",
+    "selfTransfer": "Umbuchung"
+  },
+  "chart": {
+    "spendingByCategory": "Ausgaben nach Kategorie",
+    "balanceHistory": "Kontostand-Verlauf",
+    "total": "Gesamt"
+  },
+  "add": {
+    "title": "Neue Transaktion",
+    "amountLabel": "Betrag",
+    "amountError": "Bitte einen gültigen Betrag eingeben",
+    "category": "Kategorie",
+    "categoryPlaceholder": "z. B. Lebensmittel",
+    "institution": "Anbieter",
+    "institutionPlaceholder": "z. B. Rewe",
+    "submit": "Hinzufügen"
   }
 }

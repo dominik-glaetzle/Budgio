@@ -1,8 +1,39 @@
 {
   "tabs": {
     "index": "Home",
-    "accounts": "Accounts",
+    "transactions": "Transactions",
     "settings": "Settings",
     "add": "Add"
+  },
+  "header": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon"
+  },
+  "accountType": {
+    "checking": "Checking",
+    "savings": "Savings"
+  },
+  "transactions": {
+    "title": "Recent Activity"
+  },
+  "transactionType": {
+    "incoming": "Incoming",
+    "outgoing": "Outgoing",
+    "selfTransfer": "Transfer"
+  },
+  "chart": {
+    "spendingByCategory": "Spending by Category",
+    "balanceHistory": "Balance History",
+    "total": "Total"
+  },
+  "add": {
+    "title": "New Transaction",
+    "amountLabel": "Amount",
+    "amountError": "Please enter a valid amount",
+    "category": "Category",
+    "categoryPlaceholder": "e.g. Groceries",
+    "institution": "Merchant",
+    "institutionPlaceholder": "e.g. Rewe",
+    "submit": "Add"
   }
 }
