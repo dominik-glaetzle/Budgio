@@ -12,4 +12,10 @@ export default [
       "unused-imports/no-unused-imports": "error",
     },
   },
+  {
+    files: ["**/*.config.{js,mjs,cjs,ts}"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];
