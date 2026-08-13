@@ -3,7 +3,11 @@
     "index": "Home",
     "transactions": "Transactions",
     "settings": "Settings",
-    "add": "Add"
+    "add": "Add",
+    "accounts": "Accounts"
+  },
+  "home": {
+    "noAccount": "No account has been set up for you yet."
   },
   "header": {
     "morning": "Good morning",
@@ -35,5 +39,53 @@
     "institution": "Merchant",
     "institutionPlaceholder": "e.g. Rewe",
     "submit": "Add"
+  },
+  "onboarding": {
+    "balance": {
+      "title": "Everything in view",
+      "body": "Your balance, clear and in real time."
+    },
+    "spending": {
+      "title": "Understand your spending",
+      "body": "See where your money goes, at a glance."
+    },
+    "quickAdd": {
+      "title": "Logged in seconds",
+      "body": "New transaction? A couple of taps, done."
+    },
+    "next": "Next",
+    "getStarted": "Get Started",
+    "welcome": {
+      "badge": "Finance, made simple",
+      "title": "Welcome to Budgio",
+      "subtitle": "Your balance, spending, and transactions — clear and in real time, no effort.",
+      "cardTitle": "Everything in one place",
+      "cardText": "No spreadsheets, no clutter. Just a clear view of your money."
+    }
+  },
+  "auth": {
+    "signUpTitle": "Create your account",
+    "signUpSubtitle": "Get started in a few seconds.",
+    "signInTitle": "Welcome back",
+    "signInSubtitle": "Sign in with your account.",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password",
+    "signUpCta": "Create account",
+    "signInCta": "Sign in",
+    "submitting": "One moment …",
+    "switchToSignIn": "Already have an account? Sign in",
+    "switchToSignUp": "Don't have an account? Sign up",
+    "missingFields": "Please enter email and password",
+    "confirmEmail": "Almost there! Confirm your email using the link we just sent you."
+  },
+  "accounts": {
+    "title": "Accounts",
+    "empty": "You haven't added an account yet.",
+    "newAccountTitle": "New Account",
+    "balanceLabel": "Starting balance",
+    "balanceError": "Please enter a valid amount",
+    "createCta": "Create account",
+    "notSignedIn": "You're not signed in. Please sign in again."
   }
 }

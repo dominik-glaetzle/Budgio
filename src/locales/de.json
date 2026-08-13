@@ -3,7 +3,11 @@
     "index": "Home",
     "transactions": "Transaktionen",
     "settings": "Einstellungen",
-    "add": "Hinzufügen"
+    "add": "Hinzufügen",
+    "accounts": "Konten"
+  },
+  "home": {
+    "noAccount": "Für dein Konto wurde noch kein Girokonto angelegt."
   },
   "header": {
     "morning": "Guten Morgen",
@@ -35,5 +39,53 @@
     "institution": "Anbieter",
     "institutionPlaceholder": "z. B. Rewe",
     "submit": "Hinzufügen"
+  },
+  "onboarding": {
+    "balance": {
+      "title": "Alles im Blick",
+      "body": "Dein Kontostand, übersichtlich und in Echtzeit."
+    },
+    "spending": {
+      "title": "Ausgaben verstehen",
+      "body": "Sieh auf einen Blick, wofür dein Geld drauf geht."
+    },
+    "quickAdd": {
+      "title": "In Sekunden erfasst",
+      "body": "Neue Buchungen? Ein paar Taps, fertig."
+    },
+    "next": "Weiter",
+    "getStarted": "Los geht's",
+    "welcome": {
+      "badge": "Finanzen, einfach gemacht",
+      "title": "Willkommen bei Budgio",
+      "subtitle": "Kontostand, Ausgaben und Buchungen — klar und in Echtzeit, ohne Aufwand.",
+      "cardTitle": "Alles an einem Ort",
+      "cardText": "Kein Excel, keine Zettelwirtschaft. Nur ein klarer Blick auf dein Geld."
+    }
+  },
+  "auth": {
+    "signUpTitle": "Konto erstellen",
+    "signUpSubtitle": "Leg los in ein paar Sekunden.",
+    "signInTitle": "Willkommen zurück",
+    "signInSubtitle": "Melde dich mit deinem Konto an.",
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "E-Mail-Adresse",
+    "passwordPlaceholder": "Passwort",
+    "signUpCta": "Konto erstellen",
+    "signInCta": "Anmelden",
+    "submitting": "Einen Moment …",
+    "switchToSignIn": "Schon ein Konto? Anmelden",
+    "switchToSignUp": "Noch kein Konto? Registrieren",
+    "missingFields": "Bitte E-Mail und Passwort eingeben",
+    "confirmEmail": "Fast geschafft! Bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben."
+  },
+  "accounts": {
+    "title": "Konten",
+    "empty": "Du hast noch kein Konto angelegt.",
+    "newAccountTitle": "Neues Konto",
+    "balanceLabel": "Startguthaben",
+    "balanceError": "Bitte einen gültigen Betrag eingeben",
+    "createCta": "Konto anlegen",
+    "notSignedIn": "Du bist nicht eingeloggt. Bitte melde dich erneut an."
   }
 }
