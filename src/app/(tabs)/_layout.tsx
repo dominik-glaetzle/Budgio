@@ -12,7 +12,7 @@ export default function TabLayout() {
   return (
     <NativeTabs tintColor={tintColor}>
       <NativeTabs.Trigger name="index">
-        <NativeTabTrigger.Icon sf={"house"} />
+        <NativeTabTrigger.Icon sf={"chart.pie"} />
         <NativeTabs.Trigger.Label>
           {i18n.t("tabs.index")}
         </NativeTabs.Trigger.Label>
@@ -21,6 +21,12 @@ export default function TabLayout() {
         <NativeTabTrigger.Icon sf={"chart.bar"} />
         <NativeTabs.Trigger.Label>
           {i18n.t("tabs.transactions")}
+        </NativeTabs.Trigger.Label>
+      </NativeTabs.Trigger>
+      <NativeTabs.Trigger name="accounts">
+        <NativeTabTrigger.Icon sf={"person"} />
+        <NativeTabs.Trigger.Label>
+          {i18n.t("tabs.accounts")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
