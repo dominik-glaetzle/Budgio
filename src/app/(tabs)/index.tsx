@@ -2,40 +2,23 @@ import { ActivityIndicator, ScrollView, Text } from "react-native";
 import React, { useCallback, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
-import { GreetingHeader } from "@/components/GreetingHeader";
-import { SummaryCard } from "@/components/SummaryCard";
 import { TransactionList } from "@/components/TransactionList";
 import { CategoryChart } from "@/components/CategoryChart";
-import {
-  getDisplayName,
-  getTransactions,
-  useAccount,
-  useCurrentUser,
-} from "@/lib/supabase";
+import { useAccount, useTransactions, useUserName } from "@/lib/local-storage";
 import { i18n } from "@/lib/i18n";
-import { Transaction } from "@/types/models";
+import { BalanceCard } from "@/components/SummaryCard";
+import { GreetingHeader } from "@/components/GreetingHeader";
 
 export default function Index() {
   const [chartKey, setChartKey] = useState(0);
-  const { user } = useCurrentUser();
-  const displayName = getDisplayName(user) ?? user?.email ?? "";
   const { account, loading: accountLoading } = useAccount();
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-
-  const loadTransactions = useCallback(() => {
-    if (!account) {
-      return;
-    }
-    getTransactions(account.id).then(({ data }) => {
-      setTransactions(data ?? []);
-    });
-  }, [account]);
+  const { transactions } = useTransactions(account?.id ?? null);
+  const { name } = useUserName();
 
   useFocusEffect(
     useCallback(() => {
       setChartKey((key) => key + 1);
-      loadTransactions();
-    }, [loadTransactions]),
+    }, []),
   );
 
   if (accountLoading) {
@@ -70,10 +53,10 @@ export default function Index() {
     <SafeAreaView className={"flex-1 bg-white dark:bg-black"}>
       <ScrollView
         className={"flex-1"}
-        contentContainerClassName={"gap-6 px-4 pb-8"}
+        contentContainerClassName={"gap-6 px-4 pb-8 pt-4"}
       >
-        <GreetingHeader name={displayName} />
-        <SummaryCard account={account} />
+        <GreetingHeader name={name ?? ""} />
+        <BalanceCard account={account} />
         <CategoryChart key={chartKey} transactions={transactions} />
         <TransactionList transactions={transactions} />
       </ScrollView>
