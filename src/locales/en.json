@@ -1,4 +1,7 @@
 {
+  "common": {
+    "submitting": "One moment …"
+  },
   "tabs": {
     "index": "Home",
     "transactions": "Transactions",
@@ -56,28 +59,19 @@
     "next": "Next",
     "getStarted": "Get Started",
     "welcome": {
-      "badge": "Finance, made simple",
+      "badge": "100% local & private",
       "title": "Welcome to Budgio",
-      "subtitle": "Your balance, spending, and transactions — clear and in real time, no effort.",
-      "cardTitle": "Everything in one place",
-      "cardText": "No spreadsheets, no clutter. Just a clear view of your money."
+      "subtitle": "Your financial data stays on your device — no cloud, no account, never shared with anyone.",
+      "cardTitle": "You stay in control",
+      "cardText": "Nothing ever leaves your phone. No servers, no tracking, no sign-up required."
+    },
+    "name": {
+      "title": "What should we call you?",
+      "subtitle": "Just for the greeting — stays on your device, like everything else.",
+      "placeholder": "Your name",
+      "continueCta": "Continue",
+      "error": "Please enter a name"
     }
-  },
-  "auth": {
-    "signUpTitle": "Create your account",
-    "signUpSubtitle": "Get started in a few seconds.",
-    "signInTitle": "Welcome back",
-    "signInSubtitle": "Sign in with your account.",
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email address",
-    "passwordPlaceholder": "Password",
-    "signUpCta": "Create account",
-    "signInCta": "Sign in",
-    "submitting": "One moment …",
-    "switchToSignIn": "Already have an account? Sign in",
-    "switchToSignUp": "Don't have an account? Sign up",
-    "missingFields": "Please enter email and password",
-    "confirmEmail": "Almost there! Confirm your email using the link we just sent you."
   },
   "accounts": {
     "title": "Accounts",
@@ -85,7 +79,6 @@
     "newAccountTitle": "New Account",
     "balanceLabel": "Starting balance",
     "balanceError": "Please enter a valid amount",
-    "createCta": "Create account",
-    "notSignedIn": "You're not signed in. Please sign in again."
+    "createCta": "Create account"
   }
 }

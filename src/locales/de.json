@@ -1,4 +1,7 @@
 {
+  "common": {
+    "submitting": "Einen Moment …"
+  },
   "tabs": {
     "index": "Home",
     "transactions": "Transaktionen",
@@ -56,28 +59,19 @@
     "next": "Weiter",
     "getStarted": "Los geht's",
     "welcome": {
-      "badge": "Finanzen, einfach gemacht",
+      "badge": "100 % lokal & privat",
       "title": "Willkommen bei Budgio",
-      "subtitle": "Kontostand, Ausgaben und Buchungen — klar und in Echtzeit, ohne Aufwand.",
-      "cardTitle": "Alles an einem Ort",
-      "cardText": "Kein Excel, keine Zettelwirtschaft. Nur ein klarer Blick auf dein Geld."
+      "subtitle": "Deine Finanzdaten bleiben auf deinem Gerät — keine Cloud, kein Konto, keine Weitergabe an Dritte.",
+      "cardTitle": "Du behältst die Kontrolle",
+      "cardText": "Nichts verlässt dein Handy. Keine Server, kein Tracking, keine Registrierung nötig."
+    },
+    "name": {
+      "title": "Wie dürfen wir dich nennen?",
+      "subtitle": "Nur für die Begrüßung — bleibt auf deinem Gerät, wie alles andere auch.",
+      "placeholder": "Dein Name",
+      "continueCta": "Weiter",
+      "error": "Bitte gib einen Namen ein"
     }
-  },
-  "auth": {
-    "signUpTitle": "Konto erstellen",
-    "signUpSubtitle": "Leg los in ein paar Sekunden.",
-    "signInTitle": "Willkommen zurück",
-    "signInSubtitle": "Melde dich mit deinem Konto an.",
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "E-Mail-Adresse",
-    "passwordPlaceholder": "Passwort",
-    "signUpCta": "Konto erstellen",
-    "signInCta": "Anmelden",
-    "submitting": "Einen Moment …",
-    "switchToSignIn": "Schon ein Konto? Anmelden",
-    "switchToSignUp": "Noch kein Konto? Registrieren",
-    "missingFields": "Bitte E-Mail und Passwort eingeben",
-    "confirmEmail": "Fast geschafft! Bestätige deine E-Mail-Adresse über den Link, den wir dir geschickt haben."
   },
   "accounts": {
     "title": "Konten",
@@ -85,7 +79,6 @@
     "newAccountTitle": "Neues Konto",
     "balanceLabel": "Startguthaben",
     "balanceError": "Bitte einen gültigen Betrag eingeben",
-    "createCta": "Konto anlegen",
-    "notSignedIn": "Du bist nicht eingeloggt. Bitte melde dich erneut an."
+    "createCta": "Konto anlegen"
   }
 }
