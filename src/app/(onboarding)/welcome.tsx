@@ -153,7 +153,7 @@ export default function Welcome() {
             ]}
           >
             <View style={[styles.iconWrap, { backgroundColor: `${tint}26` }]}>
-              <Text style={styles.icon}>💳</Text>
+              <Text style={styles.icon}>🔒</Text>
             </View>
             <Text style={[styles.cardTitle, { color: ink }]}>
               {i18n.t("onboarding.welcome.cardTitle")}
@@ -179,7 +179,7 @@ export default function Welcome() {
               styles.primaryButton,
               { backgroundColor: tint, opacity: pressed ? 0.85 : 1 },
             ]}
-            onPress={() => router.push("/sign-up")}
+            onPress={() => router.push("/name")}
           >
             <Text style={styles.primaryButtonText}>
               {i18n.t("onboarding.getStarted")}
