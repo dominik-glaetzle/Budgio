@@ -1,17 +1,13 @@
 import { Text, View } from "react-native";
 import { Account } from "@/types/models";
 import { i18n } from "@/lib/i18n";
+import { accountTypeLabelKeys } from "@/lib/account-type-labels";
 
-interface AccountSummaryCardProps {
+interface BalanceCardProps {
   account: Account;
 }
 
-const accountTypeLabelKeys: Record<Account["account_type"], string> = {
-  CHECKING: "accountType.checking",
-  SAVINGS: "accountType.savings",
-};
-
-export function SummaryCard({ account }: AccountSummaryCardProps) {
+export function BalanceCard({ account }: BalanceCardProps) {
   const balance = new Intl.NumberFormat(i18n.locale, {
     style: "currency",
     currency: "EUR",
