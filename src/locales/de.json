@@ -27,7 +27,8 @@
     "savings": "Sparkonto"
   },
   "transactions": {
-    "title": "Letzte Aktivitäten"
+    "title": "Letzte Aktivitäten",
+    "viewAll": "Alle Transaktionen"
   },
   "transactionsPage": {
     "title": "Transaktionen",

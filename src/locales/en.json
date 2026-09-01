@@ -27,7 +27,8 @@
     "savings": "Savings"
   },
   "transactions": {
-    "title": "Recent Activity"
+    "title": "Recent Activity",
+    "viewAll": "View All"
   },
   "transactionsPage": {
     "title": "Transactions",
