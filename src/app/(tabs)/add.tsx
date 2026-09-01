@@ -13,7 +13,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { i18n } from "@/lib/i18n";
 import { accentColor, placeholderColor } from "@/constants/colors";
-import { addTransaction, useAccount } from "@/lib/supabase";
+import { addTransaction, useAccount } from "@/lib/local-storage";
 import { transactionTypeLabelKeys } from "@/lib/transaction-type-labels";
 import { TransactionType } from "@/types/models";
 
@@ -57,7 +57,7 @@ export default function Add() {
     setError(null);
     setIsSubmitting(true);
 
-    const { error: insertError } = await addTransaction({
+    await addTransaction({
       account_id: account.id,
       target_account_id: null,
       amount: signedAmount,
@@ -68,12 +68,6 @@ export default function Add() {
     });
 
     setIsSubmitting(false);
-
-    if (insertError) {
-      setError(insertError.message);
-      return;
-    }
-
     setTransactionType("OUTGOING");
     setAmount("");
     setCategory("");
@@ -201,7 +195,7 @@ export default function Add() {
             style={{ backgroundColor: tint, opacity: isSubmitting ? 0.7 : 1 }}
           >
             <Text className={"text-base font-semibold text-white"}>
-              {isSubmitting ? i18n.t("auth.submitting") : i18n.t("add.submit")}
+              {isSubmitting ? i18n.t("common.submitting") : i18n.t("add.submit")}
             </Text>
           </Pressable>
         </ScrollView>
