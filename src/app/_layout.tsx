@@ -25,6 +25,7 @@ function RootNavigator() {
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Protected guard={hasOnboarded}>
         <Stack.Screen name={"(tabs)"} />
+        <Stack.Screen name={"transactions"} />
         <Stack.Screen
           name={"transaction/[id]"}
           options={{ presentation: "modal" }}
