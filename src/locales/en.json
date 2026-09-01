@@ -1,6 +1,12 @@
 {
   "common": {
-    "submitting": "One moment …"
+    "submitting": "One moment …",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "cancel": "Cancel",
+    "save": "Save",
+    "done": "Done",
+    "delete": "Delete"
   },
   "tabs": {
     "index": "Home",
@@ -22,6 +28,18 @@
   },
   "transactions": {
     "title": "Recent Activity"
+  },
+  "transactionsPage": {
+    "title": "Transactions",
+    "empty": "No transactions yet."
+  },
+  "transactionDetail": {
+    "title": "Transaction",
+    "date": "Date",
+    "changeIcon": "Change icon",
+    "delete": "Delete transaction",
+    "deleteConfirmTitle": "Delete transaction?",
+    "deleteConfirmBody": "This action cannot be undone."
   },
   "transactionType": {
     "incoming": "Incoming",
@@ -80,5 +98,58 @@
     "balanceLabel": "Starting balance",
     "balanceError": "Please enter a valid amount",
     "createCta": "Create account"
+  },
+  "settings": {
+    "tabs": {
+      "general": "General",
+      "categories": "Categories",
+      "import": "Import"
+    },
+    "categoryIcons": "Category Icons",
+    "customCategoryIcons": "Custom Categories",
+    "setUsername": "Set Username",
+    "import": {
+      "description": "Import transactions from an Excel file. Every month table with the columns \"Datum, Betrag, Beschreibung, Grund\" is detected — the left table as income, the right one as expenses.",
+      "button": "Choose Excel file",
+      "noAccountTitle": "Please create an account first.",
+      "emptyTitle": "No transactions were found in this file.",
+      "successTitle": "Import complete",
+      "successBody": "%{count} transactions were imported.",
+      "successBodyWithSkipped": "%{count} transactions were imported. %{skipped} transactions were skipped because no matching account (Savings) exists.",
+      "errorTitle": "The file could not be read."
+    },
+    "backup": {
+      "title": "Backup",
+      "description": "Export all local data (accounts, transactions, category icons) as a file, or restore a previously exported backup.",
+      "exportButton": "Export data",
+      "exportErrorTitle": "Export failed.",
+      "importButton": "Restore backup",
+      "importConfirmTitle": "Restore backup?",
+      "importConfirmBody": "All current accounts, transactions, and category icons will be replaced by the contents of the backup file. This cannot be undone.",
+      "importConfirmAction": "Replace",
+      "importSuccessTitle": "Backup restored.",
+      "importErrorTitle": "This file isn't a valid Budgio backup."
+    }
+  },
+  "category": {
+    "groceries": "Groceries",
+    "restaurant": "Restaurant",
+    "coffee": "Coffee",
+    "transport": "Transport",
+    "fuel": "Fuel",
+    "travel": "Travel",
+    "rent": "Rent",
+    "utilities": "Utilities",
+    "phone": "Phone & Internet",
+    "shopping": "Shopping",
+    "health": "Health",
+    "fitness": "Fitness",
+    "entertainment": "Entertainment",
+    "subscriptions": "Subscriptions",
+    "education": "Education",
+    "insurance": "Insurance",
+    "gifts": "Gifts",
+    "pets": "Pets",
+    "salary": "Salary"
   }
 }

@@ -1,6 +1,12 @@
 {
   "common": {
-    "submitting": "Einen Moment …"
+    "submitting": "Einen Moment …",
+    "today": "Heute",
+    "yesterday": "Gestern",
+    "cancel": "Abbrechen",
+    "save": "Sichern",
+    "done": "Fertig",
+    "delete": "Löschen"
   },
   "tabs": {
     "index": "Home",
@@ -22,6 +28,18 @@
   },
   "transactions": {
     "title": "Letzte Aktivitäten"
+  },
+  "transactionsPage": {
+    "title": "Transaktionen",
+    "empty": "Noch keine Transaktionen vorhanden."
+  },
+  "transactionDetail": {
+    "title": "Transaktion",
+    "date": "Datum",
+    "changeIcon": "Icon ändern",
+    "delete": "Transaktion löschen",
+    "deleteConfirmTitle": "Transaktion löschen?",
+    "deleteConfirmBody": "Diese Aktion kann nicht rückgängig gemacht werden."
   },
   "transactionType": {
     "incoming": "Eingang",
@@ -80,5 +98,58 @@
     "balanceLabel": "Startguthaben",
     "balanceError": "Bitte einen gültigen Betrag eingeben",
     "createCta": "Konto anlegen"
+  },
+  "settings": {
+    "tabs": {
+      "general": "Allgemein",
+      "categories": "Kategorien",
+      "import": "Import"
+    },
+    "categoryIcons": "Kategorie-Icons",
+    "customCategoryIcons": "Eigene Kategorien",
+    "setUsername": "Namen setzen",
+    "import": {
+      "description": "Importiere Transaktionen aus einer Excel-Datei. Jede Monatstabelle mit den Spalten „Datum, Betrag, Beschreibung, Grund“ wird erkannt — die linke Tabelle als Einnahmen, die rechte als Ausgaben.",
+      "button": "Excel-Datei auswählen",
+      "noAccountTitle": "Bitte zuerst ein Konto anlegen.",
+      "emptyTitle": "In dieser Datei wurden keine Transaktionen gefunden.",
+      "successTitle": "Import abgeschlossen",
+      "successBody": "%{count} Transaktionen wurden importiert.",
+      "successBodyWithSkipped": "%{count} Transaktionen wurden importiert. %{skipped} Transaktionen wurden übersprungen, weil kein passendes Konto (Sparkonto) angelegt ist.",
+      "errorTitle": "Die Datei konnte nicht gelesen werden."
+    },
+    "backup": {
+      "title": "Sicherung",
+      "description": "Exportiere alle lokalen Daten (Konten, Transaktionen, Kategorie-Icons) als Datei oder stelle eine vorher exportierte Sicherung wieder her.",
+      "exportButton": "Daten exportieren",
+      "exportErrorTitle": "Export fehlgeschlagen.",
+      "importButton": "Sicherung importieren",
+      "importConfirmTitle": "Sicherung wiederherstellen?",
+      "importConfirmBody": "Alle aktuellen Konten, Transaktionen und Kategorie-Icons werden durch den Inhalt der Sicherungsdatei ersetzt. Das kann nicht rückgängig gemacht werden.",
+      "importConfirmAction": "Ersetzen",
+      "importSuccessTitle": "Sicherung wurde wiederhergestellt.",
+      "importErrorTitle": "Diese Datei ist keine gültige Budgio-Sicherung."
+    }
+  },
+  "category": {
+    "groceries": "Lebensmittel",
+    "restaurant": "Restaurant",
+    "coffee": "Kaffee",
+    "transport": "Transport",
+    "fuel": "Tanken",
+    "travel": "Reisen",
+    "rent": "Miete",
+    "utilities": "Nebenkosten",
+    "phone": "Telefon & Internet",
+    "shopping": "Shopping",
+    "health": "Gesundheit",
+    "fitness": "Fitness",
+    "entertainment": "Unterhaltung",
+    "subscriptions": "Abos",
+    "education": "Bildung",
+    "insurance": "Versicherung",
+    "gifts": "Geschenke",
+    "pets": "Haustiere",
+    "salary": "Gehalt"
   }
 }
