@@ -1,7 +1,6 @@
 import { Text, View } from "react-native";
 import { Account } from "@/types/models";
 import { i18n } from "@/lib/i18n";
-import { accountTypeLabelKeys } from "@/lib/account-type-labels";
 import { useAccountBalance } from "@/lib/local-storage";
 
 interface BalanceCardProps {
@@ -18,7 +17,7 @@ export function BalanceCard({ account }: BalanceCardProps) {
   return (
     <View className={"rounded-3xl bg-accent dark:bg-accent-dark p-6"}>
       <Text className={"text-sm font-medium text-white/70"}>
-        {i18n.t(accountTypeLabelKeys[account.account_type])}
+        {account.name}
       </Text>
       <Text className={"mt-2 text-4xl font-bold text-white"}>{balance}</Text>
     </View>
