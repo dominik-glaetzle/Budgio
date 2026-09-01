@@ -1,8 +1,8 @@
 import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import * as SplashScreen from "expo-splash-screen";
+import { useEffect } from "react";
 import { OnboardingProvider, useOnboarding } from "@/store/Onboarding";
-import { useCurrentUser } from "@/lib/supabase";
 
 import "./global.css";
 
@@ -10,20 +10,27 @@ SplashScreen.preventAutoHideAsync();
 
 function RootNavigator() {
   const { hasOnboarded } = useOnboarding();
-  const { user, loading: authLoading } = useCurrentUser();
 
-  if (hasOnboarded === null || authLoading) {
+  useEffect(() => {
+    if (hasOnboarded !== null) {
+      SplashScreen.hideAsync();
+    }
+  }, [hasOnboarded]);
+
+  if (hasOnboarded === null) {
     return null;
   }
 
-  const isAuthenticated = !!user;
-
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Protected guard={isAuthenticated}>
+      <Stack.Protected guard={hasOnboarded}>
         <Stack.Screen name={"(tabs)"} />
+        <Stack.Screen
+          name={"transaction/[id]"}
+          options={{ presentation: "modal" }}
+        />
       </Stack.Protected>
-      <Stack.Protected guard={!isAuthenticated}>
+      <Stack.Protected guard={!hasOnboarded}>
         <Stack.Screen name={"(onboarding)"} />
       </Stack.Protected>
     </Stack>
