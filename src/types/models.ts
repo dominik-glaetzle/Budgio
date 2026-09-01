@@ -4,6 +4,7 @@ export type TransactionType = "INCOMING" | "OUTGOING" | "SELF_TRANSFER";
 
 export interface Account {
   id: string;
+  name: string;
   balance: number;
   account_type: AccountType;
   created_at: string;
