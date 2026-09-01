@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import {
   ActivityIndicator,
   Pressable,
@@ -9,34 +9,46 @@ import {
   useColorScheme,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useFocusEffect } from "expo-router";
 import { i18n } from "@/lib/i18n";
 import { accentColor, placeholderColor } from "@/constants/colors";
 import { accountTypeLabelKeys } from "@/lib/account-type-labels";
-import { createAccount, useAccounts, useCurrentUser } from "@/lib/supabase";
+import {
+  createAccount,
+  deleteAccount,
+  useAccountBalance,
+  useAccounts,
+} from "@/lib/local-storage";
 import { Account, AccountType } from "@/types/models";
 
 const accountTypes: AccountType[] = ["CHECKING", "SAVINGS"];
 
 function AccountCard({ account }: { account: Account }) {
+  const currentBalance = useAccountBalance(account);
   const balance = new Intl.NumberFormat(i18n.locale, {
     style: "currency",
     currency: "EUR",
-  }).format(account.balance);
+  }).format(currentBalance);
 
   return (
-    <View
-      className={
-        "flex-row items-center justify-between rounded-2xl bg-surface dark:bg-surface-dark px-4 py-4"
-      }
+    <Pressable
+      onPress={() => {
+        deleteAccount(account.id);
+      }}
     >
-      <Text className={"text-base text-black dark:text-white"}>
-        {i18n.t(accountTypeLabelKeys[account.account_type])}
-      </Text>
-      <Text className={"text-base font-semibold text-black dark:text-white"}>
-        {balance}
-      </Text>
-    </View>
+      +
+      <View
+        className={
+          "flex-row items-center justify-between rounded-2xl bg-surface dark:bg-surface-dark px-4 py-4"
+        }
+      >
+        <Text className={"text-base text-black dark:text-white"}>
+          {i18n.t(accountTypeLabelKeys[account.account_type])}
+        </Text>
+        <Text className={"text-base font-semibold text-black dark:text-white"}>
+          {balance}
+        </Text>
+      </View>
+    </Pressable>
   );
 }
 
@@ -44,26 +56,14 @@ export default function Accounts() {
   const isDark = useColorScheme() === "dark";
   const tint = isDark ? accentColor.dark : accentColor.light;
   const placeholder = isDark ? placeholderColor.dark : placeholderColor.light;
-  const { user } = useCurrentUser();
-  const { accounts, loading, refetch } = useAccounts();
+  const { accounts, loading } = useAccounts();
 
   const [accountType, setAccountType] = useState<AccountType>("CHECKING");
   const [balance, setBalance] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useFocusEffect(
-    useCallback(() => {
-      refetch();
-    }, [refetch]),
-  );
-
   const handleCreate = async () => {
-    if (!user) {
-      setError(i18n.t("accounts.notSignedIn"));
-      return;
-    }
-
     const parsedBalance = balance ? Number(balance.replace(",", ".")) : 0;
 
     if (Number.isNaN(parsedBalance)) {
@@ -74,22 +74,14 @@ export default function Accounts() {
     setError(null);
     setIsSubmitting(true);
 
-    const { error: insertError } = await createAccount({
-      user_id: user.id,
+    await createAccount({
       account_type: accountType,
       balance: parsedBalance,
     });
 
     setIsSubmitting(false);
-
-    if (insertError) {
-      setError(insertError.message);
-      return;
-    }
-
     setBalance("");
     setAccountType("CHECKING");
-    refetch();
   };
 
   return (
@@ -185,7 +177,7 @@ export default function Accounts() {
           >
             <Text className={"text-base font-semibold text-white"}>
               {isSubmitting
-                ? i18n.t("auth.submitting")
+                ? i18n.t("common.submitting")
                 : i18n.t("accounts.createCta")}
             </Text>
           </Pressable>
