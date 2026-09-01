@@ -55,6 +55,7 @@
   },
   "add": {
     "title": "Neue Transaktion",
+    "account": "Konto",
     "amountLabel": "Betrag",
     "amountError": "Bitte einen gültigen Betrag eingeben",
     "category": "Kategorie",

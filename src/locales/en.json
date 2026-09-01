@@ -55,6 +55,7 @@
   },
   "add": {
     "title": "New Transaction",
+    "account": "Account",
     "amountLabel": "Amount",
     "amountError": "Please enter a valid amount",
     "category": "Category",
