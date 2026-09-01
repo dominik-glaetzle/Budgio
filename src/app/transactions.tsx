@@ -1,8 +1,18 @@
-import { ActivityIndicator, SectionList, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Pressable,
+  SectionList,
+  Text,
+  View,
+  useColorScheme,
+} from "react-native";
 import React, { useMemo } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useRouter } from "expo-router";
+import { SymbolView } from "expo-symbols";
 import { useAccount, useTransactions } from "@/lib/local-storage";
 import { i18n } from "@/lib/i18n";
+import { accentColor } from "@/constants/colors";
 import { Transaction } from "@/types/models";
 import { TransactionRow } from "@/components/TransactionRow";
 
@@ -52,6 +62,9 @@ function groupByDay(transactions: Transaction[]) {
 }
 
 export default function Transactions() {
+  const router = useRouter();
+  const isDark = useColorScheme() === "dark";
+  const tint = isDark ? accentColor.dark : accentColor.light;
   const { account, loading: accountLoading } = useAccount();
   const { transactions, loading: transactionsLoading } = useTransactions(
     account?.id ?? null,
@@ -62,7 +75,27 @@ export default function Transactions() {
 
   return (
     <SafeAreaView className={"flex-1 bg-white dark:bg-black"}>
-      <View className={"px-4 pb-2 pt-4"}>
+      <View className={"px-2 pt-2"}>
+        <Pressable
+          onPress={() => router.back()}
+          hitSlop={8}
+          className={"flex-row items-center self-start py-1 pl-1 pr-3"}
+        >
+          <SymbolView
+            name={"chevron.left"}
+            size={17}
+            weight={"semibold"}
+            tintColor={tint}
+          />
+          <Text
+            className={"-ml-0.5 text-base font-medium"}
+            style={{ color: tint }}
+          >
+            {i18n.t("common.back")}
+          </Text>
+        </Pressable>
+      </View>
+      <View className={"px-4 pb-2 pt-1"}>
         <Text className={"text-2xl font-bold text-black dark:text-white"}>
           {i18n.t("transactionsPage.title")}
         </Text>
