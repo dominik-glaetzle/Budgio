@@ -17,12 +17,6 @@ export default function TabLayout() {
           {i18n.t("tabs.index")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
-      <NativeTabs.Trigger name="transactions">
-        <NativeTabTrigger.Icon sf={"chart.bar"} />
-        <NativeTabs.Trigger.Label>
-          {i18n.t("tabs.transactions")}
-        </NativeTabs.Trigger.Label>
-      </NativeTabs.Trigger>
       <NativeTabs.Trigger name="accounts">
         <NativeTabTrigger.Icon sf={"person"} />
         <NativeTabs.Trigger.Label>
