@@ -35,14 +35,14 @@ function AccountCard({ account }: { account: Account }) {
         deleteAccount(account.id);
       }}
     >
-      +
+      <Text>+</Text>
       <View
         className={
           "flex-row items-center justify-between rounded-2xl bg-surface dark:bg-surface-dark px-4 py-4"
         }
       >
         <Text className={"text-base text-black dark:text-white"}>
-          {i18n.t(accountTypeLabelKeys[account.account_type])}
+          {`${account.name} (${i18n.t(accountTypeLabelKeys[account.account_type])})`}
         </Text>
         <Text className={"text-base font-semibold text-black dark:text-white"}>
           {balance}
@@ -60,6 +60,7 @@ export default function Accounts() {
 
   const [accountType, setAccountType] = useState<AccountType>("CHECKING");
   const [balance, setBalance] = useState("");
+  const [accountName, setAccountName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -77,6 +78,7 @@ export default function Accounts() {
     await createAccount({
       account_type: accountType,
       balance: parsedBalance,
+      name: accountName,
     });
 
     setIsSubmitting(false);
@@ -156,6 +158,25 @@ export default function Accounts() {
               placeholder={"0.00"}
               placeholderTextColor={placeholder}
               keyboardType={"decimal-pad"}
+              className={
+                "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3 text-base text-black dark:text-white"
+              }
+            />
+          </View>
+          <View>
+            <Text
+              className={
+                "mb-1.5 text-sm text-secondary dark:text-secondary-dark"
+              }
+            >
+              {i18n.t("accounts.accountNameLabel")}
+            </Text>
+            <TextInput
+              value={accountName}
+              onChangeText={setAccountName}
+              placeholder={"Personal Checking"}
+              placeholderTextColor={placeholder}
+              keyboardType={"default"}
               className={
                 "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3 text-base text-black dark:text-white"
               }
