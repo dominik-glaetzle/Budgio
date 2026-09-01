@@ -4,6 +4,7 @@
     "today": "Heute",
     "yesterday": "Gestern",
     "cancel": "Abbrechen",
+    "back": "Zurück",
     "save": "Sichern",
     "done": "Fertig",
     "delete": "Löschen"
@@ -97,6 +98,7 @@
     "empty": "Du hast noch kein Konto angelegt.",
     "newAccountTitle": "Neues Konto",
     "balanceLabel": "Startguthaben",
+    "accountNameLabel": "Kontoname",
     "balanceError": "Bitte einen gültigen Betrag eingeben",
     "createCta": "Konto anlegen"
   },

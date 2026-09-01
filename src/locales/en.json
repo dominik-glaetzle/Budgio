@@ -4,6 +4,7 @@
     "today": "Today",
     "yesterday": "Yesterday",
     "cancel": "Cancel",
+    "back": "Back",
     "save": "Save",
     "done": "Done",
     "delete": "Delete"
@@ -97,6 +98,7 @@
     "empty": "You haven't added an account yet.",
     "newAccountTitle": "New Account",
     "balanceLabel": "Starting balance",
+    "accountNameLabel": "Account Name",
     "balanceError": "Please enter a valid amount",
     "createCta": "Create account"
   },
