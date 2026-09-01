@@ -63,7 +63,8 @@ export function BackupSection() {
     try {
       await importBackupData(data);
       Alert.alert(i18n.t("settings.backup.importSuccessTitle"));
-    } catch {
+    } catch (error) {
+      console.error("[backup] importBackupData failed", error);
       Alert.alert(i18n.t("settings.backup.importErrorTitle"));
     } finally {
       setIsImporting(false);
@@ -84,12 +85,14 @@ export function BackupSection() {
     try {
       const file = new File(result.assets[0].uri);
       data = JSON.parse(await file.text());
-    } catch {
+    } catch (error) {
+      console.error("[backup] failed to read/parse picked file", error);
       Alert.alert(i18n.t("settings.backup.importErrorTitle"));
       return;
     }
 
     if (!isBackupData(data)) {
+      console.error("[backup] picked file failed isBackupData shape check", data);
       Alert.alert(i18n.t("settings.backup.importErrorTitle"));
       return;
     }
