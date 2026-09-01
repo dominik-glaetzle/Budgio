@@ -1,19 +1,35 @@
 import { ActivityIndicator, ScrollView, Text } from "react-native";
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
 import { TransactionList } from "@/components/TransactionList";
 import { CategoryChart } from "@/components/CategoryChart";
-import { useAccount, useTransactions, useUserName } from "@/lib/local-storage";
+import {
+  useAccounts,
+  useTransactions,
+  useUserName,
+} from "@/lib/local-storage";
 import { i18n } from "@/lib/i18n";
-import { BalanceCard } from "@/components/SummaryCard";
+import { AccountCarousel } from "@/components/AccountCarousel";
 import { GreetingHeader } from "@/components/GreetingHeader";
 
 export default function Index() {
   const [chartKey, setChartKey] = useState(0);
-  const { account, loading: accountLoading } = useAccount();
+  const [accountIndex, setAccountIndex] = useState(0);
+  const { accounts, loading: accountLoading } = useAccounts();
+  const account = accounts[Math.min(accountIndex, accounts.length - 1)] ?? null;
   const { transactions } = useTransactions(account?.id ?? null);
   const { name } = useUserName();
+
+  const monthTransactions = useMemo(() => {
+    const now = new Date();
+    const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+    const nextMonthStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
+    return transactions.filter((transaction) => {
+      const occurredAt = new Date(transaction.occurred_at);
+      return occurredAt >= monthStart && occurredAt < nextMonthStart;
+    });
+  }, [transactions]);
 
   useFocusEffect(
     useCallback(() => {
@@ -31,7 +47,7 @@ export default function Index() {
     );
   }
 
-  if (!account) {
+  if (accounts.length === 0) {
     return (
       <SafeAreaView
         className={
@@ -56,9 +72,9 @@ export default function Index() {
         contentContainerClassName={"gap-6 px-4 pb-8 pt-4"}
       >
         <GreetingHeader name={name ?? ""} />
-        <BalanceCard account={account} />
-        <CategoryChart key={chartKey} transactions={transactions} />
-        <TransactionList transactions={transactions} />
+        <AccountCarousel accounts={accounts} onIndexChange={setAccountIndex} />
+        <CategoryChart key={chartKey} transactions={monthTransactions} />
+        <TransactionList transactions={monthTransactions} />
       </ScrollView>
     </SafeAreaView>
   );
