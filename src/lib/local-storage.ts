@@ -1,4 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { File, Paths } from "expo-file-system";
 import { useEffect, useState } from "react";
 import { Account, Transaction } from "@/types/models";
 
@@ -6,6 +7,7 @@ const ACCOUNTS_KEY = "local:accounts";
 const TRANSACTIONS_KEY = "local:transactions";
 const USER_NAME_KEY = "local:userName";
 const CATEGORY_ICONS_KEY = "local:categoryIcons";
+const PROFILE_PICTURE_KEY = "local:profilePicture";
 
 function generateId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
@@ -248,6 +250,68 @@ export function useUserName() {
   return { name, loading };
 }
 
+// The image picker hands back a URI in a cache directory that the OS may purge.
+// We copy the picked file into the app's document directory (which survives) and
+// persist that stable URI. A timestamped filename sidesteps any image caching on
+// the old path when the picture is replaced.
+export async function getProfilePicture() {
+  return AsyncStorage.getItem(PROFILE_PICTURE_KEY);
+}
+
+function deleteProfilePictureFile(uri: string | null) {
+  if (!uri) {
+    return;
+  }
+  try {
+    const file = new File(uri);
+    if (file.exists) {
+      file.delete();
+    }
+  } catch {
+    // A missing or already-removed file is fine to ignore.
+  }
+}
+
+export async function setProfilePicture(sourceUri: string | null) {
+  const previous = await AsyncStorage.getItem(PROFILE_PICTURE_KEY);
+
+  if (!sourceUri) {
+    deleteProfilePictureFile(previous);
+    await AsyncStorage.removeItem(PROFILE_PICTURE_KEY);
+    notifyChange();
+    return null;
+  }
+
+  const source = new File(sourceUri);
+  const extension = source.extension || ".jpg";
+  const destination = new File(Paths.document, `profile-${Date.now()}${extension}`);
+  await source.copy(destination);
+
+  if (previous && previous !== destination.uri) {
+    deleteProfilePictureFile(previous);
+  }
+
+  await AsyncStorage.setItem(PROFILE_PICTURE_KEY, destination.uri);
+  notifyChange();
+  return destination.uri;
+}
+
+export function useProfilePicture() {
+  const version = useStoreVersion();
+  const [uri, setUri] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getProfilePicture().then((value) => {
+      setUri(value);
+      setLoading(false);
+    });
+  }, [version]);
+
+  return { uri, loading };
+}
+
 export async function getCategoryIconOverrides() {
   const raw = await AsyncStorage.getItem(CATEGORY_ICONS_KEY);
   return raw ? (JSON.parse(raw) as Record<string, string>) : {};
@@ -285,17 +349,18 @@ export interface BackupData {
   transactions: Transaction[];
   categoryIcons: Record<string, string>;
   userName: string | null;
+  profilePicture: string | null;
 }
 
 export async function exportBackupData(): Promise<BackupData> {
-  const [accounts, transactions, categoryIcons, userName] = await Promise.all(
-    [
+  const [accounts, transactions, categoryIcons, userName, profilePicture] =
+    await Promise.all([
       readList<Account>(ACCOUNTS_KEY),
       readList<Transaction>(TRANSACTIONS_KEY),
       getCategoryIconOverrides(),
       getUserName(),
-    ],
-  );
+      getProfilePicture(),
+    ]);
 
   return {
     version: BACKUP_FORMAT_VERSION,
@@ -304,6 +369,7 @@ export async function exportBackupData(): Promise<BackupData> {
     transactions,
     categoryIcons,
     userName,
+    profilePicture,
   };
 }
 
@@ -318,6 +384,11 @@ export async function importBackupData(data: BackupData) {
   );
   if (data.userName) {
     await AsyncStorage.setItem(USER_NAME_KEY, data.userName);
+  }
+  if (data.profilePicture) {
+    await AsyncStorage.setItem(PROFILE_PICTURE_KEY, data.profilePicture);
+  } else {
+    await AsyncStorage.removeItem(PROFILE_PICTURE_KEY);
   }
   notifyChange();
 }

@@ -23,6 +23,12 @@
     "morning": "Good morning",
     "afternoon": "Good afternoon"
   },
+  "profilePicture": {
+    "accessibilityLabel": "Change profile picture",
+    "permissionTitle": "Photo access needed",
+    "permissionMessage": "Allow photo library access to choose a profile picture.",
+    "errorTitle": "Could not update profile picture"
+  },
   "accountType": {
     "checking": "Checking",
     "savings": "Savings"

@@ -23,6 +23,12 @@
     "morning": "Guten Morgen",
     "afternoon": "Guten Tag"
   },
+  "profilePicture": {
+    "accessibilityLabel": "Profilbild ändern",
+    "permissionTitle": "Fotozugriff erforderlich",
+    "permissionMessage": "Erlaube den Zugriff auf die Fotomediathek, um ein Profilbild auszuwählen.",
+    "errorTitle": "Profilbild konnte nicht aktualisiert werden"
+  },
   "accountType": {
     "checking": "Girokonto",
     "savings": "Sparkonto"
