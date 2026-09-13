@@ -17,7 +17,21 @@
     "accounts": "Accounts"
   },
   "home": {
-    "noAccount": "No account has been set up for you yet."
+    "noAccount": "No account has been set up for you yet.",
+    "spentThisMonth": "spent this month",
+    "flowIn": "In",
+    "flowOut": "Out",
+    "flowNet": "Net",
+    "insights": "Insights",
+    "topCategory": "Top category",
+    "spendingPace": "Spending pace",
+    "vsLastMonth": "vs last month",
+    "biggestExpense": "Biggest expense",
+    "activity": "Activity",
+    "transactionsLogged": "transactions logged",
+    "noSpendingYet": "No spending yet",
+    "viewCards": "Cards",
+    "viewChart": "Chart"
   },
   "header": {
     "morning": "Good morning",
@@ -62,6 +76,10 @@
   "add": {
     "title": "New Transaction",
     "account": "Account",
+    "fromAccount": "From account",
+    "toAccount": "To account",
+    "toAccountError": "Please select a destination account",
+    "toAccountUnavailable": "Add another account to make transfers.",
     "amountLabel": "Amount",
     "amountError": "Please enter a valid amount",
     "category": "Category",
@@ -107,7 +125,11 @@
     "balanceLabel": "Starting balance",
     "accountNameLabel": "Account Name",
     "balanceError": "Please enter a valid amount",
-    "createCta": "Create account"
+    "createCta": "Create account",
+    "totalBalance": "Total balance",
+    "thisMonth": "this month",
+    "deleteConfirmTitle": "Delete account?",
+    "deleteConfirmBody": "Its transactions will be deleted too. This action cannot be undone."
   },
   "settings": {
     "tabs": {
@@ -118,6 +140,7 @@
     "categoryIcons": "Category Icons",
     "customCategoryIcons": "Custom Categories",
     "setUsername": "Set Username",
+    "localProfile": "Local profile",
     "import": {
       "description": "Import transactions from an Excel file. Every month table with the columns \"Datum, Betrag, Beschreibung, Grund\" is detected — the left table as income, the right one as expenses.",
       "button": "Choose Excel file",

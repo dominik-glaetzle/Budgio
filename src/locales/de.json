@@ -17,7 +17,21 @@
     "accounts": "Konten"
   },
   "home": {
-    "noAccount": "Für dein Konto wurde noch kein Girokonto angelegt."
+    "noAccount": "Für dein Konto wurde noch kein Girokonto angelegt.",
+    "spentThisMonth": "ausgegeben diesen Monat",
+    "flowIn": "Ein",
+    "flowOut": "Aus",
+    "flowNet": "Netto",
+    "insights": "Einblicke",
+    "topCategory": "Top-Kategorie",
+    "spendingPace": "Ausgabetempo",
+    "vsLastMonth": "ggü. Vormonat",
+    "biggestExpense": "Größte Ausgabe",
+    "activity": "Aktivität",
+    "transactionsLogged": "Transaktionen erfasst",
+    "noSpendingYet": "Noch keine Ausgaben",
+    "viewCards": "Karten",
+    "viewChart": "Diagramm"
   },
   "header": {
     "morning": "Guten Morgen",
@@ -62,6 +76,10 @@
   "add": {
     "title": "Neue Transaktion",
     "account": "Konto",
+    "fromAccount": "Von Konto",
+    "toAccount": "Auf Konto",
+    "toAccountError": "Bitte ein Zielkonto auswählen",
+    "toAccountUnavailable": "Füge ein weiteres Konto hinzu, um Umbuchungen vorzunehmen.",
     "amountLabel": "Betrag",
     "amountError": "Bitte einen gültigen Betrag eingeben",
     "category": "Kategorie",
@@ -107,7 +125,11 @@
     "balanceLabel": "Startguthaben",
     "accountNameLabel": "Kontoname",
     "balanceError": "Bitte einen gültigen Betrag eingeben",
-    "createCta": "Konto anlegen"
+    "createCta": "Konto anlegen",
+    "totalBalance": "Gesamtguthaben",
+    "thisMonth": "diesen Monat",
+    "deleteConfirmTitle": "Konto löschen?",
+    "deleteConfirmBody": "Zugehörige Transaktionen werden ebenfalls gelöscht. Das kann nicht rückgängig gemacht werden."
   },
   "settings": {
     "tabs": {
@@ -118,6 +140,7 @@
     "categoryIcons": "Kategorie-Icons",
     "customCategoryIcons": "Eigene Kategorien",
     "setUsername": "Namen setzen",
+    "localProfile": "Lokales Profil",
     "import": {
       "description": "Importiere Transaktionen aus einer Excel-Datei. Jede Monatstabelle mit den Spalten „Datum, Betrag, Beschreibung, Grund“ wird erkannt — die linke Tabelle als Einnahmen, die rechte als Ausgaben.",
       "button": "Excel-Datei auswählen",
