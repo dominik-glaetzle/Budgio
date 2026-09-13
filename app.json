@@ -45,7 +45,9 @@
         {
           "photosPermission": "Allow Budgio to access your photos so you can set a profile picture."
         }
-      ]
+      ],
+      "expo-localization",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,
