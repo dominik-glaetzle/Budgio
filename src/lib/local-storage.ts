@@ -104,6 +104,46 @@ export async function addTransaction(
   return newTransaction;
 }
 
+export async function addTransfer(transfer: {
+  from_account_id: string;
+  to_account_id: string;
+  amount: number;
+  category: string | null;
+  institution: string | null;
+  occurred_at: string;
+}) {
+  const transactions = await readList<Transaction>(TRANSACTIONS_KEY);
+  const createdAt = new Date().toISOString();
+  const absoluteAmount = Math.abs(transfer.amount);
+
+  const outgoing: Transaction = {
+    id: generateId(),
+    account_id: transfer.from_account_id,
+    target_account_id: transfer.to_account_id,
+    amount: -absoluteAmount,
+    transaction_type: "SELF_TRANSFER",
+    category: transfer.category,
+    institution: transfer.institution,
+    occurred_at: transfer.occurred_at,
+    created_at: createdAt,
+  };
+  const incoming: Transaction = {
+    id: generateId(),
+    account_id: transfer.to_account_id,
+    target_account_id: transfer.from_account_id,
+    amount: absoluteAmount,
+    transaction_type: "SELF_TRANSFER",
+    category: transfer.category,
+    institution: transfer.institution,
+    occurred_at: transfer.occurred_at,
+    created_at: createdAt,
+  };
+
+  await writeList(TRANSACTIONS_KEY, [outgoing, incoming, ...transactions]);
+  notifyChange();
+  return [outgoing, incoming];
+}
+
 export function useAccounts() {
   const version = useStoreVersion();
   const [accounts, setAccounts] = useState<Account[]>([]);
@@ -156,6 +196,29 @@ export function useTransactions(accountId: string | null) {
       setLoading(false);
     });
   }, [accountId, version]);
+
+  return { transactions, loading };
+}
+
+export async function getAllTransactions() {
+  return readList<Transaction>(TRANSACTIONS_KEY);
+}
+
+// Unscoped by account — used for cross-account totals (net worth, this
+// month's flow across every account) where per-account useTransactions
+// would mean calling a hook once per account.
+export function useAllTransactions() {
+  const version = useStoreVersion();
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+    getAllTransactions().then((data) => {
+      setTransactions(data);
+      setLoading(false);
+    });
+  }, [version]);
 
   return { transactions, loading };
 }
