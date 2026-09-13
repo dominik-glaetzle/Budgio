@@ -3,11 +3,13 @@ import { Pressable, ScrollView, Text, View, useColorScheme } from "react-native"
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { SegmentedControl } from "@expo/ui/community/segmented-control";
+import { SymbolView } from "expo-symbols";
 import { i18n } from "@/lib/i18n";
-import { setUserName } from "@/lib/local-storage";
+import { setUserName, useUserName } from "@/lib/local-storage";
 import { CategoryIconSettings } from "@/components/CategoryIconSettings";
 import { ExcelImportSection } from "@/components/ExcelImportSection";
 import { BackupSection } from "@/components/BackupSection";
+import ProfilePicture from "@/components/ProfilePicture";
 
 const tabs = [
   { key: "general", labelKey: "settings.tabs.general" },
@@ -19,11 +21,12 @@ const Settings = () => {
   const isDark = useColorScheme() === "dark";
   const [tabIndex, setTabIndex] = useState(0);
   const activeTab = tabs[tabIndex].key;
+  const { name } = useUserName();
 
   return (
     <SafeAreaView className={"flex-1 bg-white dark:bg-black"}>
       <View className={"gap-4 px-4 pb-2 pt-2"}>
-        <Text className={"text-2xl font-bold text-black dark:text-white"}>
+        <Text className={"text-[28px] font-bold text-black dark:text-white"}>
           {i18n.t("tabs.settings")}
         </Text>
         <SegmentedControl
@@ -49,11 +52,25 @@ const Settings = () => {
         {activeTab === "general" ? (
           <Pressable
             onPress={() => setUserName("Dominik")}
-            className={"rounded-2xl bg-surface dark:bg-surface-dark px-4 py-3.5"}
+            className={
+              "flex-row items-center gap-3 rounded-2xl bg-surface dark:bg-surface-dark px-3.5 py-3"
+            }
           >
-            <Text className={"text-base text-black dark:text-white"}>
-              {i18n.t("settings.setUsername")}
-            </Text>
+            <ProfilePicture name={name ?? ""} />
+            <View className={"flex-1"}>
+              <Text className={"text-base font-semibold text-black dark:text-white"}>
+                {name || i18n.t("settings.setUsername")}
+              </Text>
+              <Text className={"text-[12.5px] text-secondary dark:text-secondary-dark"}>
+                {i18n.t("settings.localProfile")}
+              </Text>
+            </View>
+            <SymbolView
+              name={"chevron.right"}
+              size={14}
+              tintColor={isDark ? "#636366" : "#A0A0A8"}
+              resizeMode={"scaleAspectFit"}
+            />
           </Pressable>
         ) : null}
 
