@@ -42,7 +42,7 @@ export function TransactionRow({ transaction }: { transaction: Transaction }) {
       className={"flex-row items-center justify-between py-3"}
     >
       <View className={"flex-1 flex-row items-center gap-3 pr-3"}>
-        <CategoryIcon icon={icon} size={38} />
+        <CategoryIcon icon={icon} category={transaction.category} size={40} />
         <View className={"flex-1"}>
           <Text
             numberOfLines={1}
