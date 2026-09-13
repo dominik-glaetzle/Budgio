@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import { SymbolView } from "expo-symbols";
 import { DateTimePicker } from "@expo/ui/community/datetime-picker";
 import { i18n } from "@/lib/i18n";
 import { accentColor, placeholderColor } from "@/constants/colors";
@@ -174,14 +175,23 @@ export default function TransactionDetail() {
           contentContainerClassName={"gap-6 px-4 pb-8 pt-4"}
           keyboardShouldPersistTaps={"handled"}
         >
-          <View className={"items-center gap-3"}>
-            <Pressable onPress={() => setIsIconPickerVisible(true)}>
-              <CategoryIcon icon={icon} size={64} />
-            </Pressable>
-            <Pressable onPress={() => setIsIconPickerVisible(true)}>
-              <Text className={"text-sm font-medium"} style={{ color: tint }}>
-                {i18n.t("transactionDetail.changeIcon")}
-              </Text>
+          <View className={"items-center gap-2"}>
+            <Pressable
+              onPress={() => setIsIconPickerVisible(true)}
+              className={"relative"}
+            >
+              <CategoryIcon icon={icon} category={category} size={72} />
+              <View
+                className={"absolute -bottom-0.5 -right-0.5 h-[22px] w-[22px] items-center justify-center rounded-full border-2 border-white dark:border-black"}
+                style={{ backgroundColor: tint }}
+              >
+                <SymbolView
+                  name={"pencil"}
+                  size={10}
+                  tintColor={"#FFFFFF"}
+                  resizeMode={"scaleAspectFit"}
+                />
+              </View>
             </Pressable>
           </View>
 
@@ -193,7 +203,7 @@ export default function TransactionDetail() {
             </Text>
             <View className={"flex-row items-center"}>
               <Text
-                className={"text-4xl font-bold text-black dark:text-white"}
+                className={"text-[40px] font-bold text-black dark:text-white"}
               >
                 €
               </Text>
@@ -207,7 +217,7 @@ export default function TransactionDetail() {
                 placeholderTextColor={placeholder}
                 keyboardType={"decimal-pad"}
                 className={
-                  "min-w-[80px] text-4xl font-bold text-black dark:text-white"
+                  "min-w-[80px] text-[40px] font-bold text-black dark:text-white"
                 }
               />
             </View>
@@ -306,7 +316,12 @@ export default function TransactionDetail() {
             </View>
           </View>
 
-          <Pressable onPress={handleDelete} className={"items-center py-3"}>
+          <Pressable
+            onPress={handleDelete}
+            className={
+              "items-center rounded-2xl bg-surface dark:bg-surface-dark py-3.5"
+            }
+          >
             <Text className={"text-base font-semibold text-red-500"}>
               {i18n.t("transactionDetail.delete")}
             </Text>
