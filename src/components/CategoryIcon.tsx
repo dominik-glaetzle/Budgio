@@ -1,16 +1,23 @@
 import { View, useColorScheme } from "react-native";
 import { SymbolView, type SFSymbol } from "expo-symbols";
 import { accentColor, surfaceColor } from "@/constants/colors";
+import { categoryTint } from "@/lib/category-icons";
 
 interface CategoryIconProps {
   icon: SFSymbol;
+  category?: string | null;
   size?: number;
 }
 
-export function CategoryIcon({ icon, size = 38 }: CategoryIconProps) {
+export function CategoryIcon({ icon, category, size = 38 }: CategoryIconProps) {
   const isDark = useColorScheme() === "dark";
-  const tint = isDark ? accentColor.dark : accentColor.light;
-  const background = isDark ? "#2C2C2E" : surfaceColor.light;
+  const tint = categoryTint(category, isDark);
+  const background = tint
+    ? tint.bg
+    : isDark
+      ? "#2C2C2E"
+      : surfaceColor.light;
+  const iconColor = tint ? tint.fg : isDark ? accentColor.dark : accentColor.light;
 
   return (
     <View
@@ -26,7 +33,7 @@ export function CategoryIcon({ icon, size = 38 }: CategoryIconProps) {
       <SymbolView
         name={icon}
         size={size * 0.5}
-        tintColor={tint}
+        tintColor={iconColor}
         resizeMode={"scaleAspectFit"}
       />
     </View>

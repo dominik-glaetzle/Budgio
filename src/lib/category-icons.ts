@@ -1,4 +1,5 @@
 import type { SFSymbol } from "expo-symbols";
+import { categoryTintPalette } from "@/constants/colors";
 
 export const DEFAULT_CATEGORY_ICON: SFSymbol = "creditcard";
 
@@ -171,6 +172,26 @@ for (const preset of presetCategories) {
 export function canonicalizeCategory(category: string): string {
   const normalized = category.trim().toLowerCase();
   return aliasToKey.get(normalized) ?? normalized;
+}
+
+// Stable per-category tint, keyed by a hash of the canonical category name
+// so a given category always lands on the same swatch — independent of
+// how many categories exist or the order transactions were entered in.
+export function categoryTint(
+  category: string | null | undefined,
+  isDark: boolean,
+) {
+  if (!category) {
+    return null;
+  }
+
+  const palette = isDark ? categoryTintPalette.dark : categoryTintPalette.light;
+  const key = canonicalizeCategory(category);
+  let hash = 0;
+  for (let i = 0; i < key.length; i++) {
+    hash = (hash * 31 + key.charCodeAt(i)) >>> 0;
+  }
+  return palette[hash % palette.length];
 }
 
 export function resolveCategoryIcon(

@@ -34,7 +34,7 @@ function CategoryIconRow({
 
   return (
     <Pressable onPress={onPress} className={"flex-row items-center gap-3 py-3"}>
-      <CategoryIcon icon={icon} size={34} />
+      <CategoryIcon icon={icon} category={category.label} size={34} />
       <Text className={"flex-1 text-base text-black dark:text-white"}>
         {category.label}
       </Text>
