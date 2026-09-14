@@ -20,6 +20,7 @@ import {
   addTransfer,
   setCategoryIcon,
   useAccounts,
+  useAllTransactions,
   useCategoryIconOverrides,
 } from "@/lib/local-storage";
 import { transactionTypeLabelKeys } from "@/lib/transaction-type-labels";
@@ -28,8 +29,13 @@ import {
   canonicalizeCategory,
   resolveCategoryIcon,
 } from "@/lib/category-icons";
+import {
+  getCategorySuggestions,
+  getInstitutionSuggestions,
+} from "@/lib/suggestions";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryIconPickerModal } from "@/components/CategoryIconPickerModal";
+import { AutocompleteInput } from "@/components/AutocompleteInput";
 
 const transactionTypes: TransactionType[] = [
   "OUTGOING",
@@ -44,6 +50,9 @@ export default function Add() {
   const placeholder = isDark ? placeholderColor.dark : placeholderColor.light;
   const { accounts } = useAccounts();
   const { overrides } = useCategoryIconOverrides();
+  const { transactions: allTransactions } = useAllTransactions();
+  const categorySuggestions = getCategorySuggestions(allTransactions);
+  const institutionSuggestions = getInstitutionSuggestions(allTransactions);
 
   const [transactionType, setTransactionType] =
     useState<TransactionType>("OUTGOING");
@@ -335,39 +344,25 @@ export default function Add() {
                 "gap-3 rounded-2xl bg-surface dark:bg-surface-dark p-4"
               }
             >
-              <View>
-                <Text
-                  className={
-                    "mb-1.5 text-sm text-secondary dark:text-secondary-dark"
-                  }
-                >
-                  {i18n.t("add.category")}
-                </Text>
-                <TextInput
-                  value={category}
-                  onChangeText={setCategory}
-                  placeholder={i18n.t("add.categoryPlaceholder")}
-                  placeholderTextColor={placeholder}
-                  className={"text-base text-black dark:text-white"}
-                />
-              </View>
+              <AutocompleteInput
+                label={i18n.t("add.category")}
+                value={category}
+                onChangeText={setCategory}
+                suggestions={categorySuggestions}
+                placeholder={i18n.t("add.categoryPlaceholder")}
+                placeholderTextColor={placeholder}
+                className={"text-base text-black dark:text-white"}
+              />
               <View className={"h-[0.5px] bg-black/10 dark:bg-white/10"} />
-              <View>
-                <Text
-                  className={
-                    "mb-1.5 text-sm text-secondary dark:text-secondary-dark"
-                  }
-                >
-                  {i18n.t("add.institution")}
-                </Text>
-                <TextInput
-                  value={institution}
-                  onChangeText={setInstitution}
-                  placeholder={i18n.t("add.institutionPlaceholder")}
-                  placeholderTextColor={placeholder}
-                  className={"text-base text-black dark:text-white"}
-                />
-              </View>
+              <AutocompleteInput
+                label={i18n.t("add.institution")}
+                value={institution}
+                onChangeText={setInstitution}
+                suggestions={institutionSuggestions}
+                placeholder={i18n.t("add.institutionPlaceholder")}
+                placeholderTextColor={placeholder}
+                className={"text-base text-black dark:text-white"}
+              />
               <View className={"h-[0.5px] bg-black/10 dark:bg-white/10"} />
               <View className={"flex-row items-center justify-between"}>
                 <Text
