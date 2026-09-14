@@ -13,25 +13,25 @@ export default function TabLayout() {
     <NativeTabs tintColor={tintColor}>
       <NativeTabs.Trigger name="index">
         <NativeTabTrigger.Icon sf={"chart.pie"} />
-        <NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label hidden={true}>
           {i18n.t("tabs.index")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="accounts">
         <NativeTabTrigger.Icon sf={"person"} />
-        <NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label hidden={true}>
           {i18n.t("tabs.accounts")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="settings">
         <NativeTabTrigger.Icon sf={"gear"} />
-        <NativeTabs.Trigger.Label>
+        <NativeTabs.Trigger.Label hidden={true}>
           {i18n.t("tabs.settings")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
       <NativeTabs.Trigger name="add" role={"search"}>
-        <NativeTabTrigger.Icon sf={"plus"} />
-        <NativeTabs.Trigger.Label>
+        <NativeTabTrigger.Icon sf={"plus.circle.fill"} />
+        <NativeTabs.Trigger.Label hidden={true}>
           {i18n.t("tabs.add")}
         </NativeTabs.Trigger.Label>
       </NativeTabs.Trigger>
