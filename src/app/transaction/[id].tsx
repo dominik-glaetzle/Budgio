@@ -21,6 +21,7 @@ import {
   deleteTransaction,
   setCategoryIcon,
   updateTransaction,
+  useAllTransactions,
   useCategoryIconOverrides,
   useTransaction,
 } from "@/lib/local-storage";
@@ -30,8 +31,13 @@ import {
   canonicalizeCategory,
   resolveCategoryIcon,
 } from "@/lib/category-icons";
+import {
+  getCategorySuggestions,
+  getInstitutionSuggestions,
+} from "@/lib/suggestions";
 import { CategoryIcon } from "@/components/CategoryIcon";
 import { CategoryIconPickerModal } from "@/components/CategoryIconPickerModal";
+import { AutocompleteInput } from "@/components/AutocompleteInput";
 
 const transactionTypes: TransactionType[] = [
   "OUTGOING",
@@ -48,6 +54,9 @@ export default function TransactionDetail() {
 
   const { transaction, loading } = useTransaction(id ?? null);
   const { overrides } = useCategoryIconOverrides();
+  const { transactions: allTransactions } = useAllTransactions();
+  const categorySuggestions = getCategorySuggestions(allTransactions);
+  const institutionSuggestions = getInstitutionSuggestions(allTransactions);
 
   const [transactionType, setTransactionType] =
     useState<TransactionType>("OUTGOING");
@@ -255,42 +264,30 @@ export default function TransactionDetail() {
           </View>
 
           <View className={"gap-3"}>
-            <View>
-              <Text
-                className={
-                  "mb-1.5 text-sm text-secondary dark:text-secondary-dark"
-                }
-              >
-                {i18n.t("add.category")}
-              </Text>
-              <TextInput
-                value={category}
-                onChangeText={setCategory}
-                placeholder={i18n.t("add.categoryPlaceholder")}
-                placeholderTextColor={placeholder}
-                className={
-                  "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3 text-base text-black dark:text-white"
-                }
-              />
-            </View>
-            <View>
-              <Text
-                className={
-                  "mb-1.5 text-sm text-secondary dark:text-secondary-dark"
-                }
-              >
-                {i18n.t("add.institution")}
-              </Text>
-              <TextInput
-                value={institution}
-                onChangeText={setInstitution}
-                placeholder={i18n.t("add.institutionPlaceholder")}
-                placeholderTextColor={placeholder}
-                className={
-                  "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3 text-base text-black dark:text-white"
-                }
-              />
-            </View>
+            <AutocompleteInput
+              label={i18n.t("add.category")}
+              value={category}
+              onChangeText={setCategory}
+              suggestions={categorySuggestions}
+              placeholder={i18n.t("add.categoryPlaceholder")}
+              placeholderTextColor={placeholder}
+              containerClassName={
+                "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3"
+              }
+              className={"text-base text-black dark:text-white"}
+            />
+            <AutocompleteInput
+              label={i18n.t("add.institution")}
+              value={institution}
+              onChangeText={setInstitution}
+              suggestions={institutionSuggestions}
+              placeholder={i18n.t("add.institutionPlaceholder")}
+              placeholderTextColor={placeholder}
+              containerClassName={
+                "rounded-xl bg-surface dark:bg-surface-dark px-4 py-3"
+              }
+              className={"text-base text-black dark:text-white"}
+            />
             <View>
               <Text
                 className={
