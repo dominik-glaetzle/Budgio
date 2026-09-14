@@ -6,16 +6,27 @@ import { TransactionRow } from "@/components/TransactionRow";
 
 interface TransactionsListProps {
   transactions: Transaction[];
+  accountId?: string | null;
 }
 
-export function TransactionList({ transactions }: TransactionsListProps) {
+export function TransactionList({
+  transactions,
+  accountId,
+}: TransactionsListProps) {
   return (
     <View>
       <View className={"mb-1 flex-row items-center justify-between"}>
         <Text className={"text-[17px] font-bold text-black dark:text-white"}>
           {i18n.t("transactions.title")}
         </Text>
-        <Pressable onPress={() => router.navigate("/transactions")}>
+        <Pressable
+          onPress={() =>
+            router.navigate({
+              pathname: "/transactions",
+              params: accountId ? { accountId } : undefined,
+            })
+          }
+        >
           <Text
             className={"text-sm font-medium text-accent dark:text-accent-dark"}
           >

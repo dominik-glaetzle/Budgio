@@ -8,9 +8,9 @@ import {
 } from "react-native";
 import React, { useMemo } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { SymbolView } from "expo-symbols";
-import { useAccount, useTransactions } from "@/lib/local-storage";
+import { useAccounts, useTransactions } from "@/lib/local-storage";
 import { i18n } from "@/lib/i18n";
 import { accentColor } from "@/constants/colors";
 import { Transaction } from "@/types/models";
@@ -65,7 +65,11 @@ export default function Transactions() {
   const router = useRouter();
   const isDark = useColorScheme() === "dark";
   const tint = isDark ? accentColor.dark : accentColor.light;
-  const { account, loading: accountLoading } = useAccount();
+  const { accountId } = useLocalSearchParams<{ accountId?: string }>();
+  const { accounts, loading: accountLoading } = useAccounts();
+  const account = accountId
+    ? (accounts.find((entry) => entry.id === accountId) ?? null)
+    : (accounts[0] ?? null);
   const { transactions, loading: transactionsLoading } = useTransactions(
     account?.id ?? null,
   );

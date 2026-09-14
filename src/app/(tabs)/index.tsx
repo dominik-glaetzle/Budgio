@@ -176,7 +176,10 @@ export default function Index() {
         </View>
 
         <View className={"px-4"}>
-          <TransactionList transactions={monthTransactions.slice(0, 6)} />
+          <TransactionList
+            transactions={monthTransactions.slice(0, 6)}
+            accountId={account?.id ?? null}
+          />
         </View>
       </ScrollView>
     </SafeAreaView>
